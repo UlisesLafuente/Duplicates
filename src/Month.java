@@ -1,5 +1,11 @@
-public record Month(String name) {
+public class Month {
+    private final String name;
 
+    public Month(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
-
-

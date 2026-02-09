@@ -35,12 +35,12 @@ public class Main {
 
         while (iterator.hasNext()) {
             Month month = iterator.next();
-            System.out.println(month.name());
+            System.out.println(month.getName());
         }
     }
 
     public static void positionValidator(ArrayList<Month> months, int index, String name) {
-        boolean val = (months.get(index)).name().equals(name);
+        boolean val = (months.get(index)).getName().equals(name);
         if (!val) {
             throw new RuntimeException("La posición de " + name + " no es válida");
         }
