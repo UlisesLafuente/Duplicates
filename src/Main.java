@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,29 +19,31 @@ public class Main {
         Month month11 = new Month("Noviembre");
         Month month12 = new Month("Diciembre");
         Month month13 = new Month("Enero");
+        //Si esta línea y la 30 quedan sin comentar, el método para hayar duplicados lanza error.
+        //Month month14 = month2;
 
         ArrayList<Month> monthList = new ArrayList<>(List.of(
-                month1, month2, month3, month4, month5, month6, month7, month9, month10, month11, month12, month13));
+                month1, month2, month3, month4, month5, month6,
+                month7, month9, month10, month11, month12, month13));
 
         monthList.add(7, month8);
+        //monthList.add(13, month14);
 
-        ArrayList<String> monthOrder=new ArrayList<String>(List.of(
-                "Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio",
-                "Agosto","Septiembre","Octubre","Noviembre","Diciembre"));
-
+        ArrayList<String> monthOrder= new ArrayList<>(List.of(
+                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
+                "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"));
 
         orderValidator(monthList,monthOrder);
-        // positionValidator(monthList, 7, "Agosto");
+
         HashSet<Month> monthHash = convertArrayListToHashSet(monthList);
         verifyNoDuplicates(monthList, monthHash);
 
-        Iterator<Month> iterator = monthList.listIterator();
-
-        while (iterator.hasNext()) {
-            Month month = iterator.next();
-            System.out.println(month.getName());
+        for (ListIterator<Month> it = monthList.listIterator(); it.hasNext();){
+            System.out.println(it.next().getName());
         }
     }
+
+    /////////////////////////////////////////////////////////////
 
     public static void orderValidator(ArrayList<Month> monthList, ArrayList<String> monthOrder){
         int i=0;
@@ -55,15 +54,6 @@ public class Main {
             i++;
         }
     }
-
-    /*
-    public static void positionValidator(ArrayList<Month> months, int index, String name) {
-        boolean val = (months.get(index)).getName().equals(name);
-        if (!val) {
-            throw new RuntimeException("La posición de " + name + " no es válida");
-        }
-    }
-     */
 
     public static HashSet<Month> convertArrayListToHashSet(ArrayList<Month> list) {
         return new HashSet<>(list);
