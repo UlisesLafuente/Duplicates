@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ListIterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,26 +32,26 @@ public class Main {
         monthList.add(7, month8);
         //monthList.add(13, month14);
 
-        ArrayList<String> monthOrder= new ArrayList<>(List.of(
+        ArrayList<String> monthOrder = new ArrayList<>(List.of(
                 "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
                 "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"));
 
-        orderValidator(monthList,monthOrder);
+        orderValidator(monthList, monthOrder);
 
         HashSet<Month> monthHash = convertArrayListToHashSet(monthList);
         verifyNoDuplicates(monthList, monthHash);
 
-        for (ListIterator<Month> it = monthList.listIterator(); it.hasNext();){
+        for (ListIterator<Month> it = monthList.listIterator(); it.hasNext(); ) {
             System.out.println(it.next().getName());
         }
     }
 
-    /////////////////////////////////////////////////////////////
+    /// //////////////////////////////////////////////////////////
 
-    public static void orderValidator(ArrayList<Month> monthList, ArrayList<String> monthOrder){
-        int i=0;
-        for (Month month : monthList){
-            if(!(month.getName().equals(monthOrder.get(i%12)))){
+    public static void orderValidator(ArrayList<Month> monthList, ArrayList<String> monthOrder) {
+        int i = 0;
+        for (Month month : monthList) {
+            if (!(month.getName().equals(monthOrder.get(i % 12)))) {
                 throw new RuntimeException("El mes " + month.getName() + " no es válido.");
             }
             i++;
